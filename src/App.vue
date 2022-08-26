@@ -9,11 +9,12 @@
 import MyHeader from './components/MyHeader.vue'
 import MyMain from './components/MyMain.vue'
 
+
 export default {
   name: 'App',
   components: {
     MyHeader,
-    MyMain
+    MyMain,
   }
 }
 </script>

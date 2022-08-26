@@ -1,5 +1,9 @@
-# vue-dischi
+# Esercizio Boolean - Vue-Dischi
 
+* Nome: vue-dischi
+* Autore: Lupinu Riccardo
+* Data: 26/08/2022
+* Linguaggio: Vue CLI, Axios
 ## Project setup
 ```
 npm install

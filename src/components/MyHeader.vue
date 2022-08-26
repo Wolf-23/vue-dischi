@@ -16,8 +16,11 @@ export default {
     width: 100%;
     height: 80px;
     background-color: #2E3A46;
+    display: flex;
+    align-items: center;
     img {
-        height: 100%;
+        height: 80%;
+        padding-left: 15px;
     }
    }
 </style>
