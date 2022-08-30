@@ -2,7 +2,7 @@
    <main>
         <div class="disk-container">
             <MyLoading v-if="load"/>
-            <SingleDisk  v-for="(disk, index) in diskList" :key="index" :disk="disk" />
+            <SingleDisk  v-for="(disk, index) in filtredDisks" :key="index" :disk="disk" />
         </div>
    </main>
 </template>
@@ -18,11 +18,30 @@ export default {
         SingleDisk,
         MyLoading
     },
-
     data() {
         return {
             diskList: [],
+            genreList: [],
             load: true
+        }
+    },
+    props: {
+        genreToSearch: String
+    },
+    computed: {
+        filtredDisks() {
+            if(this.genreToSearch == '') {
+                return this.diskList;
+            } else {
+                const filtredList = this.diskList.filter(disk => {
+                    if(disk.genre == this.genreToSearch) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }); 
+                return filtredList;
+            }
         }
     },
     created() {
@@ -33,12 +52,17 @@ export default {
             axios.get('https://flynn.boolean.careers/exercises/api/array/music')
             .then(response => {
                 this.diskList = response.data.response;
+                this.diskList.forEach(disk => {
+                    if (!this.genreList.includes(disk.genre)) {
+                        this.genreList.push(disk.genre);
+                    }
+                })
+                this.$emit('genresReady', this.genreList);
                 this.load = false
             })
         }
     }
 }
-
 
 </script>
 
